@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe 'Flights index page' do
   describe 'as a visitor' do
     it 'shows high-level info for each flight in the system' do
-      flight_1 = Flight.create!(number: 1, departure_city: 'Denver', arrival_city: 'Reno', date: DateTime.new(2021, 01, 01))
-      flight_2 = Flight.create!(number: 2, departure_city: 'Reno', arrival_city: 'Denver', date: DateTime.new(2021, 01, 02))
+      flight_1 = Flight.create!(number: 1, departure_city: 'Denver', arrival_city: 'Reno', departing_at: DateTime.new(2021, 01, 01))
+      flight_2 = Flight.create!(number: 2, departure_city: 'Reno', arrival_city: 'Denver', departing_at: DateTime.new(2021, 01, 02))
       visit flights_path
 
       within('#flights') do
@@ -23,9 +23,9 @@ RSpec.describe 'Flights index page' do
     end
 
     it 'flights are listed in alphabetical order by departure city' do
-      flight_1 = Flight.create!(number: 1, departure_city: 'Denver', arrival_city: 'Reno', date: DateTime.new(2021, 01, 01))
-      flight_2 = Flight.create!(number: 2, departure_city: 'Reno', arrival_city: 'Denver', date: DateTime.new(2021, 01, 02))
-      flight_3 = Flight.create!(number: 3, departure_city: 'Atlanta', arrival_city: 'Dallas', date: DateTime.new(2021, 01, 01))
+      flight_1 = Flight.create!(number: 1, departure_city: 'Denver', arrival_city: 'Reno', departing_at: DateTime.new(2021, 01, 01))
+      flight_2 = Flight.create!(number: 2, departure_city: 'Reno', arrival_city: 'Denver', departing_at: DateTime.new(2021, 01, 02))
+      flight_3 = Flight.create!(number: 3, departure_city: 'Atlanta', arrival_city: 'Dallas', departing_at: DateTime.new(2021, 01, 01))
       visit flights_path
 
       within('#flights') do

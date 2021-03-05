@@ -38,5 +38,37 @@ RSpec.describe 'Flights index page' do
         expect(page).to have_content('30')
       end
     end
+
+    describe 'can remove passengers from a flight' do
+      it 'shows remove button next to each passengers name' do
+        visit flight_path(@flight)
+
+        within("#passenger-#{@bob.id}") do
+          expect(page).to have_button('Remove From Flight')
+        end
+
+        within("#passenger-#{@bronson.id}") do
+          expect(page).to have_button('Remove From Flight')
+        end
+      end
+
+      it 'clicking remove button removes passenger from the flight' do
+        visit flight_path(@flight)
+
+        within("#passenger-#{@bob.id}") do
+          click_button('Remove From Flight')
+        end
+
+        expect(current_path).to eq(flight_path(@flight))
+
+        expect(page).to_not have_selector("#passenger-#{@bob.id}")
+      end
+
+      it 'if remove fails, shows a flash message' do
+        # TODO how to test?
+        # I want to force params as if they were coming from the form object
+        # so that I can make the controller method fail and see if the flash message appears
+      end
+    end
   end
 end
