@@ -60,7 +60,6 @@ RSpec.describe 'Flights index page' do
         end
 
         expect(current_path).to eq(flight_path(@flight))
-
         expect(page).to_not have_selector("#passenger-#{@bob.id}")
       end
 
