@@ -11,6 +11,7 @@
 
 <section id='adult-passengers'>
   <h3>Adult Passengers</h3>
+  <p id='adult-passengers-avg-age'>Average Age: <%= @flight.adult_passengers_average_age %></p>
   <% @flight.adult_passengers.each do |passenger| %>
     <p><%= passenger.name %></p>
   <% end %>

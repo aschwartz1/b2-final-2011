@@ -31,8 +31,12 @@ RSpec.describe 'Flights index page' do
       end
     end
 
-    xit 'shows average age of adult passengers on the flight' do
+    it 'shows average age of adult passengers on the flight' do
+      visit flight_path(@flight)
 
+      within('#adult-passengers-avg-age') do
+        expect(page).to have_content('30')
+      end
     end
   end
 end

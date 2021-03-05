@@ -41,5 +41,27 @@ RSpec.describe Flight, type: :model do
         expect(flight.adult_passengers).to eq([])
       end
     end
+
+    describe '#adult_passengers_average_age' do
+      it 'returns adult passenger average age' do
+        flight = Flight.create!(number: 1, departure_city: 'Denver', arrival_city: 'Reno', departing_at: DateTime.new(2021, 01, 01))
+        bronson = flight.passengers.create!(name: 'Bronson', age: 18)
+        bob = flight.passengers.create!(name: 'Bob', age: 42)
+        elsie = flight.passengers.create!(name: 'Elsie', age: 4)
+
+        expect(flight.adult_passengers_average_age).to eq(30)
+      end
+
+      it 'returns 0 if there are no passengers' do
+        flight = Flight.create!(number: 1, departure_city: 'Denver', arrival_city: 'Reno', departing_at: DateTime.new(2021, 01, 01))
+        expect(flight.adult_passengers_average_age).to eq(0)
+      end
+
+      it 'returns 0 if there are only children' do
+        flight = Flight.create!(number: 1, departure_city: 'Denver', arrival_city: 'Reno', departing_at: DateTime.new(2021, 01, 01))
+        elsie = flight.passengers.create!(name: 'Elsie', age: 4)
+        expect(flight.adult_passengers_average_age).to eq(0)
+      end
+    end
   end
 end
